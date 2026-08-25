@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perth Weather & Outfit</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Perth Weather</h1>
+      <p class="subtitle" id="dateLine">Loading today's date…</p>
+    </header>
+
+    <main>
+      <section class="current-card" id="currentCard">
+        <p class="loading">Fetching current conditions…</p>
+      </section>
+
+      <section class="outfit-card" id="outfitCard"></section>
+
+      <section class="avatar-card">
+        <h2>👀 See it on the avatar</h2>
+        <p class="avatar-hint">Drag to rotate</p>
+        <div id="avatarContainer"><p class="loading">Loading 3D avatar…</p></div>
+      </section>
+
+      <section class="forecast" id="forecast"></section>
+    </main>
+
+    <footer>
+      <p>Data: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> · Location: Perth, WA, Australia</p>
+      <button id="refreshBtn">Refresh</button>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="avatar.js"></script>
+</body>
+</html>
