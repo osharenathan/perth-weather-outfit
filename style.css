@@ -140,6 +140,135 @@ header h1 {
   color: var(--accent);
 }
 
+.wardrobe-card h2 {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+}
+
+.item-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.item-form input[type="text"] {
+  grid-column: 1 / -1;
+}
+
+.item-form input,
+.item-form select {
+  background: rgba(148, 163, 184, 0.08);
+  border: 1px solid var(--card-border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.85rem;
+}
+
+.color-label,
+.warmth-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.item-form button {
+  grid-column: 1 / -1;
+  background: var(--accent);
+  border: none;
+  color: #06202f;
+  font-weight: 600;
+  padding: 9px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.wardrobe-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wardrobe-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(148, 163, 184, 0.06);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+}
+
+.wardrobe-list li.empty {
+  color: var(--muted);
+  justify-content: center;
+}
+
+.wardrobe-list .item-name {
+  flex: 1;
+}
+
+.wardrobe-list .item-meta {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.wardrobe-list .delete-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.wardrobe-list .delete-btn:hover {
+  color: #f87171;
+}
+
+.swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  flex-shrink: 0;
+}
+
+.today-picks h3 {
+  margin: 14px 0 8px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.picks-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.picks-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+}
+
+.picks-empty {
+  margin-top: 12px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
 .avatar-card h2 {
   margin: 0 0 2px;
   font-size: 1.05rem;

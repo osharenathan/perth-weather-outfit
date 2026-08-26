@@ -182,12 +182,44 @@ function applyOutfit(spec) {
   }
 
   parts.scarf.visible = !!spec.scarf;
+  if (spec.scarfColor) parts.scarf.material.color = c(spec.scarfColor);
   parts.glasses.visible = !!spec.sunglasses;
   parts.umbrellaGroup.visible = !!spec.umbrella;
 }
 
-window.addEventListener("outfit-updated", (e) => applyOutfit(e.detail));
-if (window.__lastOutfitSpec) applyOutfit(window.__lastOutfitSpec);
+// Two layers feed the avatar: the generic band spec from app.js (base) and, once the
+// user is signed in with items in their closet, colour overrides from wardrobe.js —
+// so it always renders something, and gets more personal as real items get matched.
+let baseSpec = null;
+let wardrobePicks = null;
+
+const hexToInt = (hex) => parseInt(hex.replace("#", ""), 16);
+
+function applyMerged() {
+  if (!baseSpec) return;
+  const spec = { ...baseSpec };
+  if (wardrobePicks) {
+    if (wardrobePicks.shirt) spec.shirtColor = hexToInt(wardrobePicks.shirt.color_hex);
+    if (wardrobePicks.trousers) spec.trouserColor = hexToInt(wardrobePicks.trousers.color_hex);
+    if (wardrobePicks.shoes) spec.shoeColor = hexToInt(wardrobePicks.shoes.color_hex);
+    if (spec.jacket && wardrobePicks.jacket) spec.jacketColor = hexToInt(wardrobePicks.jacket.color_hex);
+    if (spec.scarf && wardrobePicks.scarf) spec.scarfColor = hexToInt(wardrobePicks.scarf.color_hex);
+  }
+  applyOutfit(spec);
+}
+
+window.addEventListener("outfit-updated", (e) => {
+  baseSpec = e.detail;
+  applyMerged();
+});
+window.addEventListener("wardrobe-picks-updated", (e) => {
+  wardrobePicks = e.detail;
+  applyMerged();
+});
+if (window.__lastOutfitSpec) {
+  baseSpec = window.__lastOutfitSpec;
+  applyMerged();
+}
 
 function onResize() {
   const w = container.clientWidth;

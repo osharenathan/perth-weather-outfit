@@ -1,7 +1,7 @@
-// Perth, WA, Australia
-const LAT = -31.9523;
-const LON = 115.8613;
-const TIMEZONE = "Australia/Perth";
+// Hong Kong
+const LAT = 22.3193;
+const LON = 114.1694;
+const TIMEZONE = "Asia/Hong_Kong";
 
 const WEATHER_CODES = {
   0: { desc: "Clear sky", icon: "☀️" },
@@ -63,7 +63,7 @@ const OUTFIT_BANDS = [
       "🧣 Scarf",
       "👞 Leather dress shoes",
     ],
-    visual: { shirtColor: 0xdbe9f4, shirtSleeve: "long", jacket: true, jacketColor: 0x1e3a5f, trouserColor: 0x36454f, shoeColor: 0x1a1a1a, scarf: true },
+    visual: { shirtColor: 0xdbe9f4, shirtSleeve: "long", jacket: true, jacketColor: 0x1e3a5f, trouserColor: 0x36454f, shoeColor: 0x1a1a1a, scarf: true, warmthTarget: 5 },
   },
   {
     upper: 16,
@@ -73,7 +73,7 @@ const OUTFIT_BANDS = [
       "👖 Trousers or chinos",
       "👞 Leather dress shoes",
     ],
-    visual: { shirtColor: 0xdbe9f4, shirtSleeve: "long", jacket: true, jacketColor: 0x3b3b3b, trouserColor: 0x555b66, shoeColor: 0x1a1a1a, scarf: false },
+    visual: { shirtColor: 0xdbe9f4, shirtSleeve: "long", jacket: true, jacketColor: 0x3b3b3b, trouserColor: 0x555b66, shoeColor: 0x1a1a1a, scarf: false, warmthTarget: 4 },
   },
   {
     upper: 21,
@@ -83,25 +83,25 @@ const OUTFIT_BANDS = [
       "👖 Chinos or trousers",
       "👞 Loafers or dress shoes",
     ],
-    visual: { shirtColor: 0xcfe0f0, shirtSleeve: "long", jacket: false, jacketColor: 0x3b3b3b, trouserColor: 0xb79c73, shoeColor: 0x6b4423, scarf: false },
+    visual: { shirtColor: 0xcfe0f0, shirtSleeve: "long", jacket: false, jacketColor: 0x3b3b3b, trouserColor: 0xb79c73, shoeColor: 0x6b4423, scarf: false, warmthTarget: 3 },
   },
   {
     upper: 26,
     items: ["👕 Short-sleeve or light long-sleeve shirt", "👖 Chinos", "👞 Loafers"],
     notes: ["Jacket not needed — carry one only if your office runs cold."],
-    visual: { shirtColor: 0xf5f0e6, shirtSleeve: "short", jacket: false, jacketColor: 0x3b3b3b, trouserColor: 0xc2a878, shoeColor: 0x8a5a34, scarf: false },
+    visual: { shirtColor: 0xf5f0e6, shirtSleeve: "short", jacket: false, jacketColor: 0x3b3b3b, trouserColor: 0xc2a878, shoeColor: 0x8a5a34, scarf: false, warmthTarget: 2 },
   },
   {
     upper: 32,
     items: ["👕 Breathable short-sleeve shirt (cotton/linen blend)", "👖 Lightweight chinos", "👞 Breathable loafers, no socks needed with the right cut"],
     notes: ["Stick to light colours — they reflect heat and hide sweat better."],
-    visual: { shirtColor: 0xf0e6d2, shirtSleeve: "short", jacket: false, jacketColor: 0x3b3b3b, trouserColor: 0xd8c7a1, shoeColor: 0xc9a876, scarf: false },
+    visual: { shirtColor: 0xf0e6d2, shirtSleeve: "short", jacket: false, jacketColor: 0x3b3b3b, trouserColor: 0xd8c7a1, shoeColor: 0xc9a876, scarf: false, warmthTarget: 1 },
   },
   {
     upper: Infinity,
     items: ["👕 Lightest breathable short-sleeve shirt you own", "🩳 Linen trousers or tailored shorts if your office allows it"],
     notes: ["Heat is intense — avoid dark colours and synthetic fabrics."],
-    visual: { shirtColor: 0xfaf6ee, shirtSleeve: "short", jacket: false, jacketColor: 0x3b3b3b, trouserColor: 0xe6dcc3, shoeColor: 0xd9c9a3, scarf: false },
+    visual: { shirtColor: 0xfaf6ee, shirtSleeve: "short", jacket: false, jacketColor: 0x3b3b3b, trouserColor: 0xe6dcc3, shoeColor: 0xd9c9a3, scarf: false, warmthTarget: 1 },
   },
 ];
 
@@ -150,7 +150,7 @@ function suggestOutfit({ maxTemp, minTemp, precipProb, windMax, uvMax }) {
 function fmtDay(dateStr, index) {
   if (index === 0) return "Today";
   const d = new Date(dateStr + "T00:00:00");
-  return d.toLocaleDateString("en-AU", { weekday: "short" });
+  return d.toLocaleDateString("en-HK", { weekday: "short" });
 }
 
 async function loadWeather() {
@@ -164,7 +164,7 @@ async function loadWeather() {
   forecastEl.innerHTML = "";
 
   const now = new Date();
-  dateLine.textContent = now.toLocaleDateString("en-AU", {
+  dateLine.textContent = now.toLocaleDateString("en-HK", {
     weekday: "long",
     day: "numeric",
     month: "long",
@@ -184,7 +184,7 @@ async function loadWeather() {
       <div class="current-top">
         <div>
           <div class="current-temp">${Math.round(cw.temperature)}°C</div>
-          <div class="current-desc">${curInfo.desc}, feels like Perth right now</div>
+          <div class="current-desc">${curInfo.desc}, feels like Hong Kong right now</div>
         </div>
         <div class="current-icon">${curInfo.icon}</div>
       </div>

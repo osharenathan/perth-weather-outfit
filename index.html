@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Perth Weather & Outfit</title>
+<title>Hong Kong Weather & Outfit</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="app">
     <header>
-      <h1>Perth Weather</h1>
+      <h1>Hong Kong Weather</h1>
       <p class="subtitle" id="dateLine">Loading today's date…</p>
     </header>
 
@@ -19,6 +19,37 @@
       </section>
 
       <section class="outfit-card" id="outfitCard"></section>
+
+      <section class="wardrobe-card">
+        <h2>🗄️ My Wardrobe</h2>
+        <form id="addItemForm" class="item-form">
+          <input type="text" id="itemName" placeholder="e.g. Navy Chinos" required>
+          <select id="itemCategory">
+            <option value="shirt">Shirt</option>
+            <option value="trousers">Trousers</option>
+            <option value="jacket">Jacket</option>
+            <option value="shoes">Shoes</option>
+            <option value="scarf">Scarf</option>
+            <option value="accessory">Accessory</option>
+          </select>
+          <div id="itemSleeveField">
+            <select id="itemSleeve">
+              <option value="short">Short sleeve</option>
+              <option value="long">Long sleeve</option>
+            </select>
+          </div>
+          <label class="color-label">Color <input type="color" id="itemColor" value="#3b82f6"></label>
+          <select id="itemFormality">
+            <option value="business_casual">Business casual</option>
+            <option value="casual">Casual</option>
+            <option value="formal">Formal</option>
+          </select>
+          <label class="warmth-label">Warmth <input type="range" id="itemWarmth" min="1" max="5" value="3"></label>
+          <button type="submit">Add item</button>
+        </form>
+        <ul id="itemList" class="wardrobe-list"></ul>
+        <div id="todayPicks" class="today-picks"></div>
+      </section>
 
       <section class="avatar-card">
         <h2>👀 See it on the avatar</h2>
@@ -30,11 +61,12 @@
     </main>
 
     <footer>
-      <p>Data: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> · Location: Perth, WA, Australia</p>
+      <p>Data: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> · Location: Hong Kong</p>
       <button id="refreshBtn">Refresh</button>
     </footer>
   </div>
 
+  <script src="config.js"></script>
   <script src="app.js"></script>
 
   <script type="importmap">
@@ -46,5 +78,6 @@
   }
   </script>
   <script type="module" src="avatar.js"></script>
+  <script type="module" src="wardrobe.js"></script>
 </body>
 </html>
